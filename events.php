@@ -12,7 +12,6 @@ $events = $stmt->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Life & Events Gallery - Apex Model Secondary School</title>
     <meta name="description" content="Explore vibrant campus events, annual sports championships, STEM science exhibitions, and cultural functions at Apex Model Secondary School.">
-    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0b1e38">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/png" href="assets/icons/icon-192.png">
@@ -40,27 +39,50 @@ $events = $stmt->fetchAll();
 </head>
 <body>
 
-    <!-- Main Navigation Header -->
+    <!-- Floating Pill Navigation Header -->
     <header class="site-header">
-        <div class="container">
-            <div class="header-inner">
-                <a href="index.php" class="brand-block">
-                    <img src="assets/images/logo.png" alt="Apex Logo" class="brand-crest">
-                    <div>
-                        <div class="brand-title">Apex Model Secondary School</div>
-                        <span class="brand-subtitle">Campus Life & Activities Gallery</span>
-                    </div>
-                </a>
-                <nav>
-                    <ul class="main-nav-list">
-                        <li><a href="index.php" class="main-nav-link">Home</a></li>
-                        <li><a href="about.php" class="main-nav-link">About Us</a></li>
-                        <li><a href="events.php" class="main-nav-link active">Events & Life</a></li>
-                        <li><a href="notices.php" class="main-nav-link">Notices</a></li>
-                        <li><a href="contact.php" class="main-nav-link">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
+        <div class="header-inner">
+            <a href="index.php" class="brand-block">
+                <img src="assets/images/logo.png" alt="Apex Logo" class="brand-crest">
+                <div class="brand-text-block">
+                    <div class="brand-title">Apex Model Secondary School</div>
+                    <span class="brand-subtitle">Campus Life & Activities Gallery</span>
+                </div>
+            </a>
+            <nav>
+                <ul class="main-nav-list">
+                    <li>
+                        <a href="index.php" class="main-nav-link">
+                            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.php" class="main-nav-link">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            <span>About Us</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="events.php" class="main-nav-link active">
+                            <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+                            <span>Events & Life</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notices.php" class="main-nav-link">
+                            <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                            <span>Notices</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.php" class="main-nav-link">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <span>Contact</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
 

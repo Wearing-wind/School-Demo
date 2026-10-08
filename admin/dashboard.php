@@ -38,6 +38,8 @@ $dbSize = file_exists($dbFile) ? round(filesize($dbFile) / 1024, 2) . ' KB' : 'N
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Executive Control Dashboard - Apex Model Secondary School</title>
+    <meta name="theme-color" content="#091b33">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="<?= $base_path ?>assets/css/style.css">
     <link rel="icon" type="image/png" href="<?= $base_path ?>assets/icons/icon-192.png">
     <style>
@@ -90,7 +92,7 @@ $dbSize = file_exists($dbFile) ? round(filesize($dbFile) / 1024, 2) . ' KB' : 'N
                         <div style="font-size: 0.8rem; color: #f1f5f9;">User: <?= htmlspecialchars($_SESSION['admin_full_name']) ?></div>
                     </div>
                 </div>
-                <div style="display: flex; gap: 1rem; align-items: center;">
+                <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
                     <a href="<?= $base_path ?>index.php" target="_blank" class="btn btn-outline btn-sm" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">View Public Site ↗</a>
                     <a href="logout.php" class="btn btn-sm" style="background-color: #ef4444; color: #ffffff;">Logout Session</a>
                 </div>
@@ -230,5 +232,34 @@ $dbSize = file_exists($dbFile) ? round(filesize($dbFile) / 1024, 2) . ' KB' : 'N
         </ul>
     </div>
 
+    <!-- Admin PWA Service Worker & Install Prompt Engine -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('Admin SW Registration:', err));
+            });
+        }
+
+        let deferredPrompt;
+        const installBtn = document.getElementById('pwaInstallBtn');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (installBtn) installBtn.style.display = 'inline-flex';
+        });
+
+        if (installBtn) {
+            installBtn.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    if (outcome === 'accepted') {
+                        installBtn.style.display = 'none';
+                    }
+                    deferredPrompt = null;
+                }
+            });
+        }
+    </script>
 </body>
 </html>

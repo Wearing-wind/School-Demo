@@ -96,6 +96,8 @@ $notices = $pdo->query("SELECT * FROM notices ORDER BY is_pinned DESC, id DESC")
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notice Circulars Manager - Apex Administration Panel</title>
+    <meta name="theme-color" content="#091b33">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="<?= $base_path ?>assets/css/style.css">
     <link rel="icon" type="image/png" href="<?= $base_path ?>assets/icons/icon-192.png">
     <style>
@@ -302,5 +304,12 @@ $notices = $pdo->query("SELECT * FROM notices ORDER BY is_pinned DESC, id DESC")
         </ul>
     </div>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('Admin SW Registration:', err));
+            });
+        }
+    </script>
 </body>
 </html>

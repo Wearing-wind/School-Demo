@@ -44,6 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Staff Portal - Apex Model Secondary School</title>
+    <meta name="theme-color" content="#091b33">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="<?= $base_path ?>assets/css/style.css">
     <link rel="icon" type="image/png" href="<?= $base_path ?>assets/icons/icon-192.png">
     <style>
@@ -124,5 +126,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('Admin SW Registration:', err));
+            });
+        }
+    </script>
 </body>
 </html>

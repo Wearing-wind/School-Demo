@@ -5,6 +5,25 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // 0. Floating Pill Navbar Scroll & Minimize/Expand Interaction Engine
+    const siteHeader = document.querySelector('.site-header');
+    if (siteHeader) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                siteHeader.classList.add('is-minimized');
+            } else {
+                siteHeader.classList.remove('is-minimized');
+                siteHeader.classList.remove('is-expanded');
+            }
+        });
+
+        siteHeader.addEventListener('click', (e) => {
+            if (siteHeader.classList.contains('is-minimized')) {
+                siteHeader.classList.toggle('is-expanded');
+            }
+        });
+    }
+
     // 1. Progressive Scroll Reveal Animation
     const scrollElements = document.querySelectorAll('.scroll-reveal');
     if (scrollElements.length > 0) {
