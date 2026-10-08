@@ -99,7 +99,7 @@ $events = $pdo->query("SELECT * FROM events ORDER BY id DESC")->fetchAll();
         @media (max-width: 900px) { .admin-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
-<body>
+<body class="admin-body">
 
     <!-- Admin Nav -->
     <nav class="admin-nav">
@@ -257,5 +257,35 @@ $events = $pdo->query("SELECT * FROM events ORDER BY id DESC")->fetchAll();
             }
         }
     </script>
+    <!-- Admin Floating Mobile Dock -->
+    <div class="admin-mobile-dock">
+        <ul class="admin-dock-items">
+            <li class="admin-dock-item">
+                <a href="dashboard.php">
+                    <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="admin-dock-item">
+                <a href="manage_notices.php">
+                    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
+                    <span>Notices</span>
+                </a>
+            </li>
+            <li class="admin-dock-item">
+                <a href="manage_events.php" class="active">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Events</span>
+                </a>
+            </li>
+            <li class="admin-dock-item">
+                <a href="<?= $base_path ?>index.php" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    <span>Public Site</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
 </body>
 </html>
