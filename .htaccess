@@ -1,0 +1,19 @@
+# Inaruwa English Boarding School (IEBS) - Apache Configuration & Error Handling
+
+# Custom 404 Error Document
+ErrorDocument 404 /School-Demo/404.php
+
+# Security & Directory Protection
+Options -Indexes
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Protect SQLite Database Directory
+<FilesMatch "\.(sqlite|sqlite-journal|log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
