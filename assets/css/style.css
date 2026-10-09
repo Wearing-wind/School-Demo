@@ -211,50 +211,7 @@ img, video {
     color: var(--text-white);
 }
 
-/* MINIMIZED PILL ICON MODE (When scrolling down / interacting) */
-.site-header.is-minimized:not(:hover):not(.is-expanded) {
-    max-width: fit-content;
-    padding: 0 0.85rem;
-    background-color: rgba(9, 27, 51, 0.94);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 12px 35px rgba(9, 27, 51, 0.3);
-}
-
-.site-header.is-minimized:not(:hover):not(.is-expanded) .brand-text-block {
-    display: none;
-}
-
-.site-header.is-minimized:not(:hover):not(.is-expanded) .header-inner {
-    height: 50px;
-    gap: 0.75rem;
-}
-
-.site-header.is-minimized:not(:hover):not(.is-expanded) .brand-crest {
-    width: 34px;
-    height: 34px;
-}
-
-.site-header.is-minimized:not(:hover):not(.is-expanded) .main-nav-link span {
-    display: none;
-}
-
-.site-header.is-minimized:not(:hover):not(.is-expanded) .main-nav-link {
-    padding: 0.4rem;
-    border-radius: 50%;
-    color: #cbd5e1;
-}
-
-.site-header.is-minimized:not(:hover):not(.is-expanded) .main-nav-link.active {
-    background-color: var(--accent-gold);
-    color: #ffffff;
-}
-
-.site-header.is-minimized:hover, .site-header.is-expanded {
-    max-width: 1100px;
-    background-color: rgba(255, 255, 255, 0.98);
-    border-color: rgba(9, 27, 51, 0.18);
-    box-shadow: 0 16px 40px rgba(9, 27, 51, 0.22);
-}
+/* Floating Pill-Shaped Top Navigation Header (Uncompressed at top) */
 
 /* Sleek Buttons */
 .btn {
@@ -309,48 +266,80 @@ img, video {
     font-size: 0.85rem;
 }
 
-/* Mobile Minimalist Bottom Dock (< 768px) */
+/* Mobile Minimalist Animated Bottom Dock (< 768px) - Cult UI AnimatedBackground Style */
 .mobile-bottom-dock {
     display: none;
     position: fixed;
     bottom: 1.25rem;
-    left: 1.25rem;
-    right: 1.25rem;
-    z-index: 999;
-    background-color: rgba(11, 30, 56, 0.96);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background-color: rgba(9, 27, 51, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: var(--radius-full);
-    padding: 0.5rem 0.75rem;
-    box-shadow: 0 12px 30px rgba(11, 30, 56, 0.35);
+    padding: 0.35rem 0.5rem;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+    width: max-content;
+    max-width: 94vw;
 }
 
 .dock-items {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    gap: 0.25rem;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Framer-Motion / Cult UI Style Animated Background Tab Highlight */
+.dock-tab-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+}
+
+.dock-item {
+    position: relative;
+    z-index: 2;
 }
 
 .dock-item a {
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
     align-items: center;
-    gap: 0.15rem;
+    justify-content: center;
+    gap: 0.35rem;
     color: #cbd5e1;
-    font-size: 0.675rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    padding: 0.25rem 0.5rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.25s ease;
 }
 
 .dock-item a svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     fill: currentColor;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
 }
 
 .dock-item a.active, .dock-item a:hover {
-    color: var(--text-white);
+    color: #ffffff;
 }
 
 /* Hero Section */
@@ -1113,6 +1102,7 @@ input:checked + .slider-round:before {
     html, body {
         overflow-x: hidden !important;
     }
+    .site-header { position: absolute; top: 1rem; width: 94%; }
     .main-nav-list { display: none; }
     .mobile-bottom-dock { display: block; }
     .hero-h1 { font-size: 2.15rem; }

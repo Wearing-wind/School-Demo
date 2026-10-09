@@ -5,23 +5,62 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 0. Floating Pill Navbar Scroll & Minimize/Expand Interaction Engine
-    const siteHeader = document.querySelector('.site-header');
-    if (siteHeader) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 40) {
-                siteHeader.classList.add('is-minimized');
-            } else {
-                siteHeader.classList.remove('is-minimized');
-                siteHeader.classList.remove('is-expanded');
+    // 0. Mobile Bottom Dock - Cult UI AnimatedBackground Hover Tab Engine
+    const mobileDock = document.querySelector('.mobile-bottom-dock');
+    if (mobileDock) {
+        const dockItems = mobileDock.querySelector('.dock-items');
+        if (dockItems) {
+            // Ensure animated background tab highlight element exists
+            let tabBg = dockItems.querySelector('.dock-tab-bg');
+            if (!tabBg) {
+                tabBg = document.createElement('div');
+                tabBg.className = 'dock-tab-bg';
+                dockItems.appendChild(tabBg);
             }
-        });
 
-        siteHeader.addEventListener('click', (e) => {
-            if (siteHeader.classList.contains('is-minimized')) {
-                siteHeader.classList.toggle('is-expanded');
+            const links = dockItems.querySelectorAll('.dock-item a');
+            const activeLink = dockItems.querySelector('.dock-item a.active') || links[0];
+
+            function positionTabBg(target) {
+                if (!target || !tabBg || !dockItems) return;
+                const targetRect = target.getBoundingClientRect();
+                const parentRect = dockItems.getBoundingClientRect();
+
+                const left = targetRect.left - parentRect.left;
+                const top = targetRect.top - parentRect.top;
+                const width = targetRect.width;
+                const height = targetRect.height;
+
+                tabBg.style.transform = `translate3d(${left}px, ${top}px, 0)`;
+                tabBg.style.width = `${width}px`;
+                tabBg.style.height = `${height}px`;
+                tabBg.style.opacity = '1';
             }
-        });
+
+            // Position initial active tab background
+            setTimeout(() => positionTabBg(activeLink), 60);
+            window.addEventListener('resize', () => {
+                const currentActive = dockItems.querySelector('.dock-item a.active') || activeLink;
+                positionTabBg(currentActive);
+            });
+
+            // Tab hover & touch interaction (AnimatedBackground spring slide)
+            links.forEach(link => {
+                link.addEventListener('mouseenter', () => positionTabBg(link));
+                link.addEventListener('focus', () => positionTabBg(link));
+                link.addEventListener('click', () => {
+                    links.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    positionTabBg(link);
+                });
+            });
+
+            // Smooth return to active page tab when hover leaves dock
+            dockItems.addEventListener('mouseleave', () => {
+                const currentActive = dockItems.querySelector('.dock-item a.active') || activeLink;
+                positionTabBg(currentActive);
+            });
+        }
     }
 
     // 1. Progressive Scroll Reveal Animation
